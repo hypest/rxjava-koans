@@ -34,9 +34,9 @@ public class lessonB_MapAndFlatMapAndBasicOperators {
                 .map(word -> word.replace("e", "3"))
                 .map(word -> word.replace("l", "1"))
                 .subscribe(mSubscriber);
-        assertThat(mSubscriber.getOnNextEvents()).contains(_____);
-        assertThat(mSubscriber.getOnNextEvents()).contains(_____);
-        assertThat(mSubscriber.getOnNextEvents()).contains(_____);
+        assertThat(mSubscriber.getOnNextEvents()).contains("k3w1");
+        assertThat(mSubscriber.getOnNextEvents()).contains("133t");
+        assertThat(mSubscriber.getOnNextEvents()).contains("sp3ak");
     }
 
     /**
@@ -85,7 +85,7 @@ public class lessonB_MapAndFlatMapAndBasicOperators {
         });
         map.subscribe(mSubscriber);
 
-        assertThat(mSubscriber.getOnNextEvents()).hasSize(____);
+        assertThat(mSubscriber.getOnNextEvents()).hasSize(2);
 
         /** Was the result above what you expected? A bit strange huh? You'd think that you'd get
          * a value matching the number of items of foods in each list at first glance.
@@ -113,7 +113,7 @@ public class lessonB_MapAndFlatMapAndBasicOperators {
             }
         });
         individualItemsObservable.subscribe(mSubscriber);
-        assertThat(mSubscriber.getOnNextEvents()).hasSize(____);
+        assertThat(mSubscriber.getOnNextEvents()).hasSize(funnelCakeCart.size() + chineseFoodCart.size());
 
         mSubscriber = new TestSubscriber<>();
 
@@ -131,7 +131,7 @@ public class lessonB_MapAndFlatMapAndBasicOperators {
             }
         }).subscribe(mSubscriber);
 
-        assertThat(mSubscriber.getOnNextEvents()).hasSize(____);
+        assertThat(mSubscriber.getOnNextEvents()).hasSize(7);
 
         System.out.println("With my 5 bucks I can buy: " + mSubscriber.getOnNextEvents());
     }
@@ -157,7 +157,7 @@ public class lessonB_MapAndFlatMapAndBasicOperators {
         elevatorPassengersObservable.reduce(0, (accumulatedWeight, elevatorPassenger) ->
                 elevatorPassenger.mWeightInPounds + accumulatedWeight)
                 .subscribe(testSubscriber);
-        assertThat(testSubscriber.getOnNextEvents().get(0)).isEqualTo(____);
+        assertThat(testSubscriber.getOnNextEvents().get(0)).isEqualTo(168 + 234 + 192 + 142 + 114);
     }
 
     /**
@@ -170,7 +170,7 @@ public class lessonB_MapAndFlatMapAndBasicOperators {
 
         Observable<String> repeatingObservable = Observable.just(weapon).repeat(4);
         repeatingObservable.subscribe(subscriber);
-        assertThat(subscriber.getOnNextEvents()).hasSize(____);
+        assertThat(subscriber.getOnNextEvents()).hasSize(4);
 
         subscriber = new TestSubscriber<>();
         /**
@@ -178,7 +178,7 @@ public class lessonB_MapAndFlatMapAndBasicOperators {
          */
         Observable<String> challengeRepeatingObservable = repeatingObservable.repeat(4);
         challengeRepeatingObservable.subscribe(subscriber);
-        assertThat(subscriber.getOnNextEvents()).hasSize(____);
+        assertThat(subscriber.getOnNextEvents()).hasSize(16);
     }
 
 
@@ -201,9 +201,9 @@ public class lessonB_MapAndFlatMapAndBasicOperators {
                 })
                 .doOnNext(integer -> mStringC += integer)
                 .subscribe(integer -> mStringC += integer);
-        assertThat(mStringA).isEqualTo("____");
-        assertThat(mStringB).isEqualTo("____");
-        assertThat(mStringC).isEqualTo("____");
+        assertThat(mStringA).isEqualTo("123456");
+        assertThat(mStringB).isEqualTo("246");
+        assertThat(mStringC).isEqualTo("112233445566");
     }
 
     /**
@@ -215,7 +215,7 @@ public class lessonB_MapAndFlatMapAndBasicOperators {
     public void _6_convertingEvents() {
         mStringA = "";
         Observable.just("wE", "hOpe", "yOU", "aRe", "eNjOyInG", "thIS")
-                .map(s -> _____)
+                .map(s -> s.toLowerCase())
                 .subscribe(s -> mStringA += s + " ");
 
         assertThat(mStringA).isEqualTo("we hope you are enjoying this ");
